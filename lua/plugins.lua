@@ -11,7 +11,7 @@ return require('packer').startup(function()
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
   -- Lsp
-  use 'neovim/nvim-lspconfig'
+  use { 'neovim/nvim-lspconfig', config = require('lsp')}
   -- Completion
   use({
     'hrsh7th/nvim-cmp',

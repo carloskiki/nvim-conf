@@ -66,5 +66,6 @@ cmp.setup({
   sources = {
     { name = 'buffer' },
     { name = 'ultisnips' },
+    { name = 'nvim_lsp' },
   }
 })

@@ -18,7 +18,6 @@ return require('packer').startup(function()
     requires = {"quangnguyen30192/cmp-nvim-ultisnips", "hrsh7th/cmp-buffer", 'hrsh7th/cmp-nvim-lsp'},
     config = require('nv-cmp')
     })
-
   -- Snippets
   use({
     "SirVer/ultisnips",
@@ -26,5 +25,15 @@ return require('packer').startup(function()
     config = function()
       vim.g.UltiSnipsRemoveSelectModeMappings = 0
     end,
-  })
+  -- Color scheme
+  use 'folke/tokyonight.nvim',
+  -- Tree-sitter
+  use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate',
+        config = require('nv-treesitter')
+  },
+  -- Dev icons
+  use 'kyazdani42/nvim-web-devicons',
+})
 end)

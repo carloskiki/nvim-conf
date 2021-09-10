@@ -29,3 +29,7 @@ vim.opt.autochdir=true                           -- Your working directory will 
 vim.opt.iskeyword:append('-')
 vim.opt.hidden = true
 vim.opt.formatoptions:remove('cro')
+
+-- Color Scheme
+vim.cmd[[colorscheme tokyonight]]
+vim.g.tokyonight_style = "night"

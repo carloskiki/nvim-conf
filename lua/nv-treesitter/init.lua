@@ -1,13 +1,3 @@
-require'nvim-treesitter.install'.compilers = { "gcc-11" }
-
-local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
-parser_config.haskell = {
-  install_info = {
-    url = "~/path/to/tree-sitter-haskell",
-    files = {"src/parser.c", "src/scanner.cc"}
-  }
-}
-
 require'nvim-treesitter.configs'.setup {
   -- ensure_installed = "maintained", -- one of "all", "maintained" (parsers with maintainers), or a list of languages
   ensure_installed = { 'javascript', 'python', 'haskell', 'tsx', 'typescript', 'lua' },
@@ -24,4 +14,15 @@ require'nvim-treesitter.configs'.setup {
 }
 
 -- Haskell parser
+require'nvim-treesitter.install'.compilers = { "gcc-11" }
+
+local parser_config = require "nvim-treesitter.parsers".get_parser_configs()
+parser_config.haskell = {
+  install_info = {
+    url = "~/Code/git/tree-sitter-haskell",
+    files = {"src/parser.c", "src/scanner.cc"}
+  }
+}
+
+
 

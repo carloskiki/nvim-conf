@@ -27,6 +27,7 @@ return require('packer').startup(function()
     end,
   -- Color scheme
   use 'folke/tokyonight.nvim',
+  use 'navarasu/onedark.nvim',
   -- Tree-sitter
   use {
         'nvim-treesitter/nvim-treesitter',
@@ -35,5 +36,11 @@ return require('packer').startup(function()
   },
   -- Dev icons
   use 'kyazdani42/nvim-web-devicons',
+  -- Telescope
+  use {
+  'nvim-telescope/telescope.nvim',
+  requires = { 'nvim-lua/plenary.nvim' },
+  config = require('nv-telescope')
+  },
 })
 end)

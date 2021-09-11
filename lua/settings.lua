@@ -31,5 +31,5 @@ vim.opt.hidden = true
 vim.opt.formatoptions:remove('cro')
 
 -- Color Scheme
-vim.cmd[[colorscheme tokyonight]]
-vim.g.tokyonight_style = "night"
+vim.cmd[[colorscheme onedark]]
+vim.g.tokyonight_style = "storm"

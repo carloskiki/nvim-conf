@@ -5,19 +5,18 @@ if fn.empty(fn.glob(install_path)) > 0 then
   vim.cmd 'packadd packer.nvim'
 end
 
-return require('packer').startup(function()
+return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
   -- Lsp
-  use { 'neovim/nvim-lspconfig', config = require('lsp')}
+  use 'neovim/nvim-lspconfig'
   -- Completion
   use({
     'hrsh7th/nvim-cmp',
     requires = {"quangnguyen30192/cmp-nvim-ultisnips", "hrsh7th/cmp-buffer", 'hrsh7th/cmp-nvim-lsp'},
-    config = require('nv-cmp')
-    })
+  })
   -- Snippets
   use({
     "SirVer/ultisnips",
@@ -25,22 +24,32 @@ return require('packer').startup(function()
     config = function()
       vim.g.UltiSnipsRemoveSelectModeMappings = 0
     end,
+  })
   -- Color scheme
-  use 'folke/tokyonight.nvim',
-  use 'navarasu/onedark.nvim',
+  use 'folke/tokyonight.nvim'
+  use 'navarasu/onedark.nvim'
   -- Tree-sitter
   use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-        config = require('nv-treesitter')
-  },
+    'nvim-treesitter/nvim-treesitter',
+    run = ':TSUpdate',
+  }
   -- Dev icons
-  use 'kyazdani42/nvim-web-devicons',
+  use 'kyazdani42/nvim-web-devicons'
   -- Telescope
   use {
-  'nvim-telescope/telescope.nvim',
-  requires = { 'nvim-lua/plenary.nvim' },
-  config = require('nv-telescope')
-  },
-})
+    'nvim-telescope/telescope.nvim',
+    requires = { 'nvim-lua/plenary.nvim' },
+  }
+  -- Buffer tabs
+  use {'akinsho/bufferline.nvim',
+    requires = 'kyazdani42/nvim-web-devicons',
+  }
+  -- Status line
+  use {
+  'glepnir/galaxyline.nvim',
+    branch = 'main',
+    -- your statusline
+    config = function() require'nv-galaxyline' end,
+    requires = {'kyazdani42/nvim-web-devicons'}
+  }
 end)

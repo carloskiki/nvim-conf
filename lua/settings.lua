@@ -14,7 +14,6 @@ vim.opt.smarttab=true                            -- Makes tabbing smarter will r
 vim.opt.expandtab=true                           -- Converts tabs to spaces
 vim.opt.smartindent=true                         -- Makes indenting smart
 vim.opt.autoindent=true                          -- Good auto indent
-vim.opt.laststatus=0                        -- Always display the status line
 vim.opt.number=true                              -- Line numbers
 -- vim.opt.cursorline=true                          -- Enable highlighting of the current line
 vim.opt.background="dark"                     -- tell vim what the background color looks like
@@ -29,7 +28,9 @@ vim.opt.autochdir=true                           -- Your working directory will 
 vim.opt.iskeyword:append('-')
 vim.opt.hidden = true
 vim.opt.formatoptions:remove('cro')
+vim.opt.termguicolors=true
 
 -- Color Scheme
+-- vim.cmd[[colorscheme onedark]]
 vim.cmd[[colorscheme onedark]]
-vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_style = "night"

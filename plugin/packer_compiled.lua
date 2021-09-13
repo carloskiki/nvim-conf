@@ -69,6 +69,31 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  ["bufferline.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
+  },
+  ["cmp-buffer"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+  },
+  ["cmp-nvim-lsp"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+  },
+  ["cmp-nvim-ultisnips"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips"
+  },
+  ["galaxyline.nvim"] = {
+    config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18nv-galaxyline\frequire\0" },
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+  },
+  ["nvim-cmp"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+  },
   ["nvim-lspconfig"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
@@ -77,13 +102,54 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
   },
+  ["nvim-treesitter"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+  },
+  ["nvim-web-devicons"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+  },
+  ["onedark.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/onedark.nvim"
+  },
   ["packer.nvim"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/packer.nvim"
+  },
+  ["plenary.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+  },
+  ["telescope.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+  },
+  ["tokyonight.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+  },
+  ultisnips = {
+    config = { "\27LJ\2\nC\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0&UltiSnipsRemoveSelectModeMappings\6g\bvim\0" },
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/ultisnips"
+  },
+  ["vim-snippets"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vim-snippets"
   }
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: galaxyline.nvim
+time([[Config for galaxyline.nvim]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18nv-galaxyline\frequire\0", "config", "galaxyline.nvim")
+time([[Config for galaxyline.nvim]], false)
+-- Config for: ultisnips
+time([[Config for ultisnips]], true)
+try_loadstring("\27LJ\2\nC\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0&UltiSnipsRemoveSelectModeMappings\6g\bvim\0", "config", "ultisnips")
+time([[Config for ultisnips]], false)
 if should_profile then save_profiles() end
 
 end)

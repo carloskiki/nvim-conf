@@ -64,8 +64,8 @@ cmp.setup({
         }),
       },
   sources = {
+    { name = 'nvim_lsp' },
     { name = 'buffer' },
     { name = 'ultisnips' },
-    { name = 'nvim_lsp' },
   }
 })

@@ -33,6 +33,7 @@ return require('packer').startup(function(use)
     'nvim-treesitter/nvim-treesitter',
     run = ':TSUpdate',
   }
+  use 'p00f/nvim-ts-rainbow'
   -- Dev icons
   use 'kyazdani42/nvim-web-devicons'
   -- Telescope
@@ -52,4 +53,6 @@ return require('packer').startup(function(use)
     config = function() require'nv-galaxyline' end,
     requires = {'kyazdani42/nvim-web-devicons'}
   }
+  -- Colorizer
+  use 'norcalli/nvim-colorizer.lua'
 end)

@@ -27,10 +27,17 @@ vim.opt.clipboard="unnamedplus"               -- Copy paste between vim and ever
 vim.opt.autochdir=true                           -- Your working directory will always be the same as your working directory
 vim.opt.iskeyword:append('-')
 vim.opt.hidden = true
-vim.opt.formatoptions:remove('cro')
 vim.opt.termguicolors=true
 
+-- remove continuation of comments to next line
+
 -- Color Scheme
+vim.g.onedark_transparent_background = true
 -- vim.cmd[[colorscheme onedark]]
-vim.cmd[[colorscheme onedark]]
-vim.g.tokyonight_style = "night"
+vim.cmd[[autocmd BufNewFile,BufRead * setlocal formatoptions-=cro]]
+vim.cmd[[colorscheme tokyonight]]
+vim.g.tokyonight_transparent = true
+-- vim.cmd[[au colorscheme * hi Normal ctermbg=none guibg=none]]
+
+
+vim.g.tokyonight_style = "storm"

@@ -34,6 +34,7 @@ return require('packer').startup(function(use)
     run = ':TSUpdate',
   }
   use 'p00f/nvim-ts-rainbow'
+  use 'windwp/nvim-ts-autotag'
   -- Dev icons
   use 'kyazdani42/nvim-web-devicons'
   -- Telescope
@@ -41,6 +42,7 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
+  use 'nvim-telescope/telescope-fzy-native.nvim'
   -- Buffer tabs
   use {'akinsho/bufferline.nvim',
     requires = 'kyazdani42/nvim-web-devicons',
@@ -55,4 +57,8 @@ return require('packer').startup(function(use)
   }
   -- Colorizer
   use 'norcalli/nvim-colorizer.lua'
+  -- Better quickfix
+  use 'kevinhwang91/nvim-bqf'
+  -- Auto pairs
+  use 'windwp/nvim-autopairs'
 end)

@@ -28,10 +28,3 @@ vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', { noremap = true, sile
 
 -- TAB completion
 -- vim.api.nvim_set_keymap('i', '<expr><TAB>', 'pumvisible() ? \"\\<C-n>\" : \"\\<TAB>\"', { noremap = true, silent = true })
-
--- Telescope shortcuts
-local opt = { noremap = true, silent = true }
-vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opt)
-vim.api.nvim_set_keymap('n', '<leader>fg', '<cmd>Telescope live_grep<cr>', opt)
-vim.api.nvim_set_keymap('n', '<leader>fb', '<cmd>Telescope buffers<cr>', opt)
-vim.api.nvim_set_keymap('n', '<leader>fh', '<cmd>Telescope help_tags<cr>', opt)

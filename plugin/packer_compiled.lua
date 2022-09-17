@@ -9,23 +9,26 @@ vim.api.nvim_command('packadd packer.nvim')
 
 local no_errors, error_msg = pcall(function()
 
-  local time
-  local profile_info
-  local should_profile = false
-  if should_profile then
-    local hrtime = vim.loop.hrtime
-    profile_info = {}
-    time = function(chunk, start)
-      if start then
-        profile_info[chunk] = hrtime()
-      else
-        profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
-      end
+_G._packer = _G._packer or {}
+_G._packer.inside_compile = true
+
+local time
+local profile_info
+local should_profile = false
+if should_profile then
+  local hrtime = vim.loop.hrtime
+  profile_info = {}
+  time = function(chunk, start)
+    if start then
+      profile_info[chunk] = hrtime()
+    else
+      profile_info[chunk] = (hrtime() - profile_info[chunk]) / 1e6
     end
-  else
-    time = function(chunk, start) end
   end
-  
+else
+  time = function(chunk, start) end
+end
+
 local function save_profiles(threshold)
   local sorted_times = {}
   for chunk_name, time_taken in pairs(profile_info) do
@@ -38,8 +41,10 @@ local function save_profiles(threshold)
       results[i] = elem[1] .. ' took ' .. elem[2] .. 'ms'
     end
   end
+  if threshold then
+    table.insert(results, '(Only showing plugins that took longer than ' .. threshold .. ' ms ' .. 'to load)')
+  end
 
-  _G._packer = _G._packer or {}
   _G._packer.profile_output = results
 end
 
@@ -57,7 +62,7 @@ end
 time([[Luarocks path setup]], false)
 time([[try_loadstring definition]], true)
 local function try_loadstring(s, component, name)
-  local success, result = pcall(loadstring(s))
+  local success, result = pcall(loadstring(s), name, _G.packer_plugins[name])
   if not success then
     vim.schedule(function()
       vim.api.nvim_notify('packer.nvim: Error running ' .. component .. ' for ' .. name .. ': ' .. result, vim.log.levels.ERROR, {})
@@ -69,115 +74,161 @@ end
 time([[try_loadstring definition]], false)
 time([[Defining packer_plugins]], true)
 _G.packer_plugins = {
+  LuaSnip = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/LuaSnip",
+    url = "https://github.com/L3MON4D3/LuaSnip"
+  },
   ["bufferline.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/bufferline.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/bufferline.nvim",
+    url = "https://github.com/akinsho/bufferline.nvim"
   },
   ["cmp-buffer"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-buffer"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-buffer",
+    url = "https://github.com/hrsh7th/cmp-buffer"
   },
   ["cmp-nvim-lsp"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lsp",
+    url = "https://github.com/hrsh7th/cmp-nvim-lsp"
   },
-  ["cmp-nvim-ultisnips"] = {
+  ["cmp-nvim-lua"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-nvim-ultisnips"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-nvim-lua",
+    url = "https://github.com/hrsh7th/cmp-nvim-lua"
   },
-  ["galaxyline.nvim"] = {
-    config = { "\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18nv-galaxyline\frequire\0" },
+  ["cmp-path"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/galaxyline.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-path",
+    url = "https://github.com/hrsh7th/cmp-path"
+  },
+  ["cmp-spell"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp-spell",
+    url = "https://github.com/f3fora/cmp-spell"
+  },
+  cmp_luasnip = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
+    url = "https://github.com/saadparwaiz1/cmp_luasnip"
+  },
+  ["gitsigns.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/gitsigns.nvim",
+    url = "https://github.com/lewis6991/gitsigns.nvim"
   },
   ["nvim-autopairs"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-autopairs"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
+    url = "https://github.com/windwp/nvim-autopairs"
   },
   ["nvim-bqf"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-bqf"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-bqf",
+    url = "https://github.com/kevinhwang91/nvim-bqf"
   },
   ["nvim-cmp"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-cmp"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-cmp",
+    url = "https://github.com/hrsh7th/nvim-cmp"
   },
   ["nvim-colorizer.lua"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
+    url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-lspconfig"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-lspconfig",
+    url = "https://github.com/neovim/nvim-lspconfig"
   },
   ["nvim-tree.lua"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-tree.lua"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-tree.lua",
+    url = "https://github.com/kyazdani42/nvim-tree.lua"
   },
   ["nvim-treesitter"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-treesitter"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-treesitter",
+    url = "https://github.com/nvim-treesitter/nvim-treesitter"
   },
   ["nvim-ts-autotag"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-ts-autotag",
+    url = "https://github.com/windwp/nvim-ts-autotag"
   },
   ["nvim-ts-rainbow"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-ts-rainbow",
+    url = "https://github.com/p00f/nvim-ts-rainbow"
   },
   ["nvim-web-devicons"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-web-devicons"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-web-devicons",
+    url = "https://github.com/kyazdani42/nvim-web-devicons"
   },
   ["onedark.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/onedark.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/onedark.nvim",
+    url = "https://github.com/navarasu/onedark.nvim"
   },
   ["packer.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/packer.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/packer.nvim",
+    url = "https://github.com/wbthomason/packer.nvim"
   },
   ["plenary.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/plenary.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/plenary.nvim",
+    url = "https://github.com/nvim-lua/plenary.nvim"
+  },
+  ["rust-tools.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
+    url = "https://github.com/simrat39/rust-tools.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/telescope-fzy-native.nvim",
+    url = "https://github.com/nvim-telescope/telescope-fzy-native.nvim"
   },
   ["telescope.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/telescope.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/telescope.nvim",
+    url = "https://github.com/nvim-telescope/telescope.nvim"
   },
   ["tokyonight.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/tokyonight.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
+    url = "https://github.com/folke/tokyonight.nvim"
   },
-  ultisnips = {
-    config = { "\27LJ\2\nC\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0&UltiSnipsRemoveSelectModeMappings\6g\bvim\0" },
+  ["vim-be-good"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/ultisnips"
-  },
-  ["vim-snippets"] = {
-    loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vim-snippets"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vim-be-good",
+    url = "https://github.com/ThePrimeagen/vim-be-good"
   }
 }
 
 time([[Defining packer_plugins]], false)
--- Config for: galaxyline.nvim
-time([[Config for galaxyline.nvim]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18nv-galaxyline\frequire\0", "config", "galaxyline.nvim")
-time([[Config for galaxyline.nvim]], false)
--- Config for: ultisnips
-time([[Config for ultisnips]], true)
-try_loadstring("\27LJ\2\nC\0\0\2\0\3\0\0056\0\0\0009\0\1\0)\1\0\0=\1\2\0K\0\1\0&UltiSnipsRemoveSelectModeMappings\6g\bvim\0", "config", "ultisnips")
-time([[Config for ultisnips]], false)
+
+_G._packer.inside_compile = false
+if _G._packer.needs_bufread == true then
+  vim.cmd("doautocmd BufRead")
+end
+_G._packer.needs_bufread = false
+
 if should_profile then save_profiles() end
 
 end)
 
 if not no_errors then
+  error_msg = error_msg:gsub('"', '\\"')
   vim.api.nvim_command('echohl ErrorMsg | echom "Error in packer_compiled: '..error_msg..'" | echom "Please check your config for correctness" | echohl None')
 end

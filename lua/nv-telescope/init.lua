@@ -5,6 +5,7 @@ require('telescope').setup {
     mappings = {
       n = {
         ["ZZ"] = actions.close,
+        ["Q"] = actions.send_selected_to_qflist + actions.open_qflist,
       }
     },
   },

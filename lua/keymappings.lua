@@ -20,11 +20,13 @@ vim.api.nvim_set_keymap('v', '>', '>gv', { noremap = true, silent = true })
 -- I hate escape
 vim.api.nvim_set_keymap('i', 'jk', '<ESC>', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('i', 'kj', '<ESC>', { noremap = true, silent = true })
-vim.api.nvim_set_keymap('i', 'jj', '<ESC>', { noremap = true, silent = true })
 
 -- Move selected line / block of text in visual mode
 vim.api.nvim_set_keymap('x', 'K', ':move \'<-2<CR>gv-gv', { noremap = true, silent = true })
 vim.api.nvim_set_keymap('x', 'J', ':move \'>+1<CR>gv-gv', { noremap = true, silent = true })
 
--- TAB completion
--- vim.api.nvim_set_keymap('i', '<expr><TAB>', 'pumvisible() ? \"\\<C-n>\" : \"\\<TAB>\"', { noremap = true, silent = true })
+-- Better Yank
+vim.api.nvim_set_keymap('n', 'Y', 'y$', { noremap = true, silent = true })
+
+vim.api.nvim_set_keymap('n', 'n', 'nzzzv', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', 'N', 'Nzzzv', { noremap = true, silent = true })

@@ -28,16 +28,23 @@ vim.opt.autochdir=true                           -- Your working directory will 
 vim.opt.iskeyword:append('-')
 vim.opt.hidden = true
 vim.opt.termguicolors=true
+vim.opt.spell = false
+vim.opt.spelllang = { 'en_us' }
+
+if vim.g.neovide == true then
+  vim.o.guifont = "RobotoMono Nerd Font:h16"
+end
+
+-- Highlight on Yank
+vim.cmd[[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]]
 
 -- remove continuation of comments to next line
 
 -- Color Scheme
-vim.g.onedark_transparent_background = true
+-- vim.g.onedark_transparent_background = true
 -- vim.cmd[[colorscheme onedark]]
-vim.cmd[[autocmd BufNewFile,BufRead * setlocal formatoptions-=cro]]
 vim.cmd[[colorscheme tokyonight]]
-vim.g.tokyonight_transparent = true
+-- vim.g.tokyonight_transparent = true
 -- vim.cmd[[au colorscheme * hi Normal ctermbg=none guibg=none]]
 
-
-vim.g.tokyonight_style = "storm"
+vim.g.tokyonight_style = "night"

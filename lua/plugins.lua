@@ -8,6 +8,8 @@ end
 return require('packer').startup(function(use)
   -- Packer can manage itself
   use 'wbthomason/packer.nvim'
+  -- Vim Game To improve
+  use 'ThePrimeagen/vim-be-good'
   -- File explorer
   use 'kyazdani42/nvim-tree.lua'
   -- Lsp
@@ -15,19 +17,29 @@ return require('packer').startup(function(use)
   -- Completion
   use({
     'hrsh7th/nvim-cmp',
-    requires = {"quangnguyen30192/cmp-nvim-ultisnips", "hrsh7th/cmp-buffer", 'hrsh7th/cmp-nvim-lsp'},
+    requires = {
+      "saadparwaiz1/cmp_luasnip",
+      "hrsh7th/cmp-buffer",
+      "hrsh7th/cmp-nvim-lsp",
+      "hrsh7th/cmp-nvim-lua",
+      "hrsh7th/cmp-path",
+      "f3fora/cmp-spell"
+    },
   })
   -- Snippets
-  use({
-    "SirVer/ultisnips",
-    requires = "honza/vim-snippets",
-    config = function()
-      vim.g.UltiSnipsRemoveSelectModeMappings = 0
-    end,
-  })
+  use 'L3MON4D3/LuaSnip'
   -- Color scheme
   use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
+
+  -- Git signs
+  use {
+    'lewis6991/gitsigns.nvim',
+    requires = {
+      'nvim-lua/plenary.nvim'
+    },
+    -- tag = 'release' -- To use the latest release
+  }
   -- Tree-sitter
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -44,17 +56,15 @@ return require('packer').startup(function(use)
   }
   use 'nvim-telescope/telescope-fzy-native.nvim'
   -- Buffer tabs
-  use {'akinsho/bufferline.nvim',
-    requires = 'kyazdani42/nvim-web-devicons',
-  }
-  -- Status line
-  use {
-  'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- your statusline
-    config = function() require'nv-galaxyline' end,
-    requires = {'kyazdani42/nvim-web-devicons'}
-  }
+    use {'akinsho/bufferline.nvim',
+      requires = 'kyazdani42/nvim-web-devicons',
+    }
+  -- Rust tools
+  use 'simrat39/rust-tools.nvim'
+
+  -- Debugger
+  use 'mfussenegger/nvim-dap'
+
   -- Colorizer
   use 'norcalli/nvim-colorizer.lua'
   -- Better quickfix

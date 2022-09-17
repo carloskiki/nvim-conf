@@ -4,7 +4,7 @@ local globals = require('lsp/globals')
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'hls', 'pyright', 'tsserver' }
+local servers = { 'pyright', 'tsserver', 'cssls', 'hls', 'html' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = globals.on_attach,
@@ -13,3 +13,4 @@ for _, lsp in ipairs(servers) do
 end
 require("lsp/lua-ls")
 require("lsp/json-ls")
+require("lsp/rust-ls")

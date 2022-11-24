@@ -59,16 +59,13 @@ return require('packer').startup(function(use)
     use {'akinsho/bufferline.nvim',
       requires = 'kyazdani42/nvim-web-devicons',
     }
-  -- Rust tools
-  use 'simrat39/rust-tools.nvim'
-
-  -- Debugger
-  use 'mfussenegger/nvim-dap'
-
   -- Colorizer
   use 'norcalli/nvim-colorizer.lua'
-  -- Better quickfix
-  use 'kevinhwang91/nvim-bqf'
   -- Auto pairs
   use 'windwp/nvim-autopairs'
+  -- LaTeX
+  use 'lervag/vimtex'
+
+  -- Project Manager
+  use 'ahmedkhalf/project.nvim'
 end)

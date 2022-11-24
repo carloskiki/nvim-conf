@@ -124,11 +124,6 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
     url = "https://github.com/windwp/nvim-autopairs"
   },
-  ["nvim-bqf"] = {
-    loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-bqf",
-    url = "https://github.com/kevinhwang91/nvim-bqf"
-  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -138,11 +133,6 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
-  },
-  ["nvim-dap"] = {
-    loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-dap",
-    url = "https://github.com/mfussenegger/nvim-dap"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -189,10 +179,10 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/plenary.nvim",
     url = "https://github.com/nvim-lua/plenary.nvim"
   },
-  ["rust-tools.nvim"] = {
+  ["project.nvim"] = {
     loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/rust-tools.nvim",
-    url = "https://github.com/simrat39/rust-tools.nvim"
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/project.nvim",
+    url = "https://github.com/ahmedkhalf/project.nvim"
   },
   ["telescope-fzy-native.nvim"] = {
     loaded = true,
@@ -213,6 +203,11 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vim-be-good",
     url = "https://github.com/ThePrimeagen/vim-be-good"
+  },
+  vimtex = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vimtex",
+    url = "https://github.com/lervag/vimtex"
   }
 }
 

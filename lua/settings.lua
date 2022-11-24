@@ -31,6 +31,8 @@ vim.opt.termguicolors=true
 vim.opt.spell = false
 vim.opt.spelllang = { 'en_us' }
 
+vim.opt.relativenumber = true;
+
 if vim.g.neovide == true then
   vim.o.guifont = "RobotoMono Nerd Font:h16"
 end

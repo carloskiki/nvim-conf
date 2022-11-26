@@ -17,6 +17,7 @@ require('telescope').setup {
   }
 }
 require('telescope').load_extension('fzy_native')
+require("telescope").load_extension("file_browser")
 
 local opt = { noremap = true, silent = true }
 vim.api.nvim_set_keymap('n', '<leader>ff', '<cmd>Telescope find_files<cr>', opt)

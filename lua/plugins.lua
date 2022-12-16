@@ -10,24 +10,28 @@ return require('packer').startup(function(use)
   use 'wbthomason/packer.nvim'
   -- Vim Game To improve
   use 'ThePrimeagen/vim-be-good'
-  -- File explorer
-  use 'kyazdani42/nvim-tree.lua'
   -- Lsp
-  use 'neovim/nvim-lspconfig'
-  -- Completion
-  use({
-    'hrsh7th/nvim-cmp',
+  use {
+    'VonHeikemen/lsp-zero.nvim',
     requires = {
-      "saadparwaiz1/cmp_luasnip",
-      "hrsh7th/cmp-buffer",
-      "hrsh7th/cmp-nvim-lsp",
-      "hrsh7th/cmp-nvim-lua",
-      "hrsh7th/cmp-path",
-      "f3fora/cmp-spell"
-    },
-  })
-  -- Snippets
-  use 'L3MON4D3/LuaSnip'
+      -- LSP Support
+      {'neovim/nvim-lspconfig'},
+      {'williamboman/mason.nvim'},
+      {'williamboman/mason-lspconfig.nvim'},
+
+      -- Autocompletion
+      {'hrsh7th/nvim-cmp'},
+      {'hrsh7th/cmp-buffer'},
+      {'hrsh7th/cmp-path'},
+      {'saadparwaiz1/cmp_luasnip'},
+      {'hrsh7th/cmp-nvim-lsp'},
+      {'hrsh7th/cmp-nvim-lua'},
+
+      -- Snippets
+      {'L3MON4D3/LuaSnip'},
+      {'rafamadriz/friendly-snippets'},
+    }
+  }
   -- Color scheme
   use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
@@ -38,7 +42,6 @@ return require('packer').startup(function(use)
     requires = {
       'nvim-lua/plenary.nvim'
     },
-    -- tag = 'release' -- To use the latest release
   }
   -- Tree-sitter
   use {
@@ -47,15 +50,12 @@ return require('packer').startup(function(use)
   }
   use 'p00f/nvim-ts-rainbow'
   use 'windwp/nvim-ts-autotag'
-  -- Dev icons
-  use 'kyazdani42/nvim-web-devicons'
   -- Telescope
   use {
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
   use 'nvim-telescope/telescope-fzy-native.nvim'
-  use { "nvim-telescope/telescope-file-browser.nvim" }
   -- Buffer tabs
     use {'akinsho/bufferline.nvim',
       requires = 'kyazdani42/nvim-web-devicons',
@@ -66,7 +66,4 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   -- LaTeX
   use 'lervag/vimtex'
-
-  -- Project Manager
-  use 'ahmedkhalf/project.nvim'
 end)

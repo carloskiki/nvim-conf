@@ -52,3 +52,16 @@ vim.keymap.set('n', '<leader>vcg', function()
   })
 end, opt)
 
+-- Lazygit with Toggleterm
+local Terminal  = require('toggleterm.terminal').Terminal
+local lazygit = Terminal:new({ cmd = "lazygit", hidden = true })
+
+local _lazygit_toggle = function ()
+  lazygit:toggle()
+end
+
+vim.api.nvim_set_keymap("n", "<leader>g", "<cmd>lua _lazygit_toggle()<CR>", {noremap = true, silent = true})
+
+
+-- Rust rsx format
+vim.api.nvim_set_keymap( 'n', '<F7>', 'vi{:! prettier --parser html --stdin-filepath<CR>vi{>', {noremap = true})

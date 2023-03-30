@@ -1,5 +1,6 @@
 require('nvim-autopairs').setup()
 require('gitsigns').setup()
 require('colorizer').setup()
-require("bufferline").setup()
+require('bufferline').setup()
 require('telescope').setup()
+require('toggleterm').setup()

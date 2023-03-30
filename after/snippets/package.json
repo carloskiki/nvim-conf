@@ -1,0 +1,11 @@
+{
+    "name": "Personal Snippets",
+    "contributes": {
+        "snippets": [
+            {
+                "language": "rust",
+                "path": "./leptos.json"
+            }
+        ]
+    }
+}

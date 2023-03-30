@@ -35,6 +35,7 @@ return require('packer').startup(function(use)
   -- Color scheme
   use 'folke/tokyonight.nvim'
   use 'navarasu/onedark.nvim'
+  use 'marko-cerovac/material.nvim'
 
   -- Git signs
   use {
@@ -43,6 +44,10 @@ return require('packer').startup(function(use)
       'nvim-lua/plenary.nvim'
     },
   }
+
+  -- toggleterm (for lazygit)
+  use {"akinsho/toggleterm.nvim", tag = '*'}
+
   -- Tree-sitter
   use {
     'nvim-treesitter/nvim-treesitter',
@@ -55,7 +60,6 @@ return require('packer').startup(function(use)
     'nvim-telescope/telescope.nvim',
     requires = { 'nvim-lua/plenary.nvim' },
   }
-  use 'nvim-telescope/telescope-fzy-native.nvim'
   -- Buffer tabs
     use {'akinsho/bufferline.nvim',
       requires = 'kyazdani42/nvim-web-devicons',

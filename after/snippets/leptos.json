@@ -1,0 +1,14 @@
+{
+    "Leptos Functional Component": {
+        "prefix": "lfc",
+        "body": [
+            "#[component]",
+            "pub fn ${1}(cx: Scope) -> impl IntoView {",
+            "    view! { cx,",
+            "        ${2}",
+            "    }",
+            "}"
+        ],
+        "description": "Leptos Functional Component"
+    }
+}

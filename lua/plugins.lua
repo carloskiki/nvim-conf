@@ -45,6 +45,9 @@ return require('packer').startup(function(use)
     },
   }
 
+  -- Github Copilot
+  use 'https://github.com/github/copilot.vim'
+
   -- toggleterm (for lazygit)
   use {"akinsho/toggleterm.nvim", tag = '*'}
 
@@ -70,4 +73,6 @@ return require('packer').startup(function(use)
   use 'windwp/nvim-autopairs'
   -- LaTeX
   use 'lervag/vimtex'
+  -- Markdown Tables
+  use 'dhruvasagar/vim-table-mode'
 end)

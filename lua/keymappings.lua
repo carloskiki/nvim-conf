@@ -62,10 +62,13 @@ end, opt)
 
 -- Github Copilot
 vim.keymap.set('n', '<leader>p', ':Copilot <CR>', opt)
-vim.keymap.set('i', '<C-b>', 'copilot#Accept()', { silent = true, expr = true })
-vim.keymap.set('i', '<C-\\>', '<Plug>(copilot-suggest)')
+vim.keymap.set('i', '<C-j>', 'copilot#Accept()', { noremap = true, silent = true, expr = true, replace_keycodes = false })
+vim.keymap.set('i', '<C-i>', '<Plug>(copilot-suggest)')
 
 -- Lazygit with Toggleterm
 vim.keymap.set("n", "<leader>g", function()
     require('toggleterm.terminal').Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" }):toggle()
 end, opt)
+
+-- Paste without overwriting the clipboard
+vim.keymap.set({'n', 'v'}, '<leader>p', '"0p', opt)

@@ -67,7 +67,7 @@ end)
 -- Setup lsp-zero
 lsp.setup()
 
--- Setup Rust
+-- Setup Rust Tools
 local rt = require("rust-tools")
 rt.setup({
     server = {
@@ -77,6 +77,9 @@ rt.setup({
         end,
         standalone = false
     },
+    inlay_hints = {
+        auto = false,
+    }
 })
 
 -- Setup Diagnostics
@@ -140,7 +143,7 @@ cmp.setup({
         end, { "i", "s" }),
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
-                if cmp.visible() and cmp.get_active_entry() then
+                if cmp.visible() then
                     cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
                 else
                     fallback()
@@ -151,4 +154,7 @@ cmp.setup({
         }),
     }
 })
+
+
+
 

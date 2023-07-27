@@ -70,13 +70,13 @@ lsp.setup()
 -- Setup Rust
 local rt = require("rust-tools")
 rt.setup({
-  server = {
-    on_attach = function(_, bufnr)
-      vim.keymap.set("n", "<Leader>ct", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr, remap = false })
-    end,
-
-    standalone = false
-  },
+    server = {
+        on_attach = function(_, bufnr)
+            vim.keymap.set("n", "<Leader>ct", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
+            vim.keymap.set("n", "<Leader>n", rt.external_docs.open_external_docs, { buffer = bufnr })
+        end,
+        standalone = false
+    },
 })
 
 -- Setup Diagnostics
@@ -151,3 +151,4 @@ cmp.setup({
         }),
     }
 })
+

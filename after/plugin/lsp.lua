@@ -51,7 +51,7 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
     vim.keymap.set('n', 'K', '<cmd>lua vim.lsp.buf.hover()<CR>', opts)
     vim.keymap.set('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    vim.keymap.set('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
+    -- vim.keymap.set('n', '<Leader>e', '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics()<CR>', opts)
     -- vim.keymap.set('n', '<space>wa', '<cmd>lua vim.lsp.buf.add_workspace_folder()<CR>', opts)
     -- vim.keymap.set('n', '<space>wr', '<cmd>lua vim.lsp.buf.remove_workspace_folder()<CR>', opts)
     -- vim.keymap.set('n', '<space>wl', '<cmd>lua print(vim.inspect(vim.lsp.buf.list_workspace_folders()))<CR>', opts)
@@ -75,11 +75,16 @@ rt.setup({
             vim.keymap.set("n", "<Leader>ct", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
             vim.keymap.set("n", "<Leader>n", rt.external_docs.open_external_docs, { buffer = bufnr })
         end,
-        standalone = false
+        standalone = true,
     },
-    inlay_hints = {
-        auto = false,
+
+    tools = {
+        inlay_hints = {
+            auto = false,
+            only_current_line = true,
+        }
     }
+
 })
 
 -- Setup Diagnostics
@@ -105,6 +110,7 @@ vim.diagnostic.config({
 
 -- Load custom snippets
 require("luasnip.loaders.from_vscode").load({ paths = { "~/.config/nvim/after/snippets" } })
+require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/after/snippets" } })
 -- Control-Space: trigger completion
 -- Enhance Tab for snippets also
 local luasnip = require("luasnip")
@@ -154,7 +160,3 @@ cmp.setup({
         }),
     }
 })
-
-
-
-

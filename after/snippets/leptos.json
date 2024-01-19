@@ -3,8 +3,8 @@
         "prefix": "lfc",
         "body": [
             "#[component]",
-            "pub fn ${1}(cx: Scope) -> impl IntoView {",
-            "    view! { cx,",
+            "pub fn ${1}() -> impl IntoView {",
+            "    view! {",
             "        ${2}",
             "    }",
             "}"

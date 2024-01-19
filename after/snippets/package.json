@@ -5,6 +5,10 @@
             {
                 "language": "rust",
                 "path": "./leptos.json"
+            },
+            {
+                "language": "latex",
+                "path": "./latex.json"
             }
         ]
     }

@@ -71,4 +71,8 @@ vim.keymap.set("n", "<leader>g", function()
 end, opt)
 
 -- Paste without overwriting the clipboard
-vim.keymap.set({'n', 'v'}, '<leader>p', '"0p', opt)
+vim.keymap.set({ 'n', 'v' }, '<leader>p', '"0p', opt)
+
+-- Activate/Deactivate Copilot
+vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', opt)
+vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', opt)

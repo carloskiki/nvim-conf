@@ -10,18 +10,21 @@ vim.filetype.add({ extension = { wgsl = "wgsl" } })
 -- }
 
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { 'javascript', 'python', 'haskell', 'tsx', 'typescript', 'lua', 'json', 'css', 'rust', 'latex',
+    ensure_installed = { 'python', 'haskell', 'tsx', 'typescript', 'lua', 'json', 'css', 'rust', 'latex',
         'wgsl', 'c', 'vim', 'help' },
 
     -- Complete html tags and etc.
     autotag = {
         enable = true,
         filetypes = {
-            'html', 'javascript', 'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx', 'rescript',
+            'html',
+            'javascript',
+            'typescript', 'javascriptreact', 'typescriptreact', 'svelte', 'vue', 'tsx', 'jsx',
+            'rescript',
             'xml',
             'php',
             'markdown',
-            'glimmer', 'handlebars', 'hbs'
+            'glimmer', 'handlebars', 'hbs',
         }
     },
 
@@ -29,9 +32,4 @@ require 'nvim-treesitter.configs'.setup {
         enable = true,
         additional_vim_regex_highlighting = false,
     },
-    rainbow = {
-        enable = true,
-        extended_mode = true,
-        max_file_lines = nil,
-    }
 }

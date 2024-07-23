@@ -20,8 +20,8 @@ vim.keymap.set('v', '<', '<gv', opt)
 vim.keymap.set('v', '>', '>gv', opt)
 
 -- I hate escape
-vim.keymap.set('i', 'jk', '<ESC>', opt)
-vim.keymap.set('i', 'kj', '<ESC>', opt)
+-- vim.keymap.set('i', 'jk', '<ESC>', opt)
+-- vim.keymap.set('i', 'kj', '<ESC>', opt)
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', opt)
@@ -76,3 +76,6 @@ vim.keymap.set({ 'n', 'v' }, '<leader>p', '"0p', opt)
 -- Activate/Deactivate Copilot
 vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', opt)
 vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', opt)
+
+-- VimTex binding for wrapping delimiters in \left & \right
+vim.keymap.set('n', '<leader>lr', '<plug>(vimtex-delim-add-modifiers)', { silent = true })

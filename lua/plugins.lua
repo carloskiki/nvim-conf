@@ -17,7 +17,7 @@ return require('packer').startup(function(use)
     }
 
     -- Rust Tools
-    use 'simrat39/rust-tools.nvim'
+    use 'mrcjkb/rustaceanvim'
 
     -- LSP Support
     use { 'neovim/nvim-lspconfig' }
@@ -78,4 +78,6 @@ return require('packer').startup(function(use)
     use 'lervag/vimtex'
     -- Markdown Tables
     use 'dhruvasagar/vim-table-mode'
+    -- Better Escape
+    use "max397574/better-escape.nvim"
 end)

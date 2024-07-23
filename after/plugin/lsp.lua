@@ -7,7 +7,6 @@ lsp.ensure_installed({
     'pyright',
     'rust_analyzer',
     'hls',
-    'ltex',
     'wgsl_analyzer',
 })
 
@@ -67,26 +66,6 @@ end)
 -- Setup lsp-zero
 lsp.setup()
 
--- Setup Rust Tools
-local rt = require("rust-tools")
-rt.setup({
-    server = {
-        on_attach = function(_, bufnr)
-            vim.keymap.set("n", "<Leader>ct", rt.open_cargo_toml.open_cargo_toml, { buffer = bufnr })
-            vim.keymap.set("n", "<Leader>n", rt.external_docs.open_external_docs, { buffer = bufnr })
-        end,
-        standalone = true,
-    },
-
-    tools = {
-        inlay_hints = {
-            auto = false,
-            only_current_line = true,
-        }
-    }
-
-})
-
 -- Setup Diagnostics
 lsp.set_sign_icons({
     error = '✘',
@@ -109,13 +88,20 @@ vim.diagnostic.config({
 
 
 -- Load custom snippets
-require("luasnip.loaders.from_vscode").load({ paths = { "~/.config/nvim/after/snippets" } })
-require("luasnip.loaders.from_lua").load({ paths = { "~/.config/nvim/after/snippets" } })
+require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/after/snippets" } })
+require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/after/snippets" } })
 -- Control-Space: trigger completion
 -- Enhance Tab for snippets also
 local luasnip = require("luasnip")
-local cmp = require("cmp")
+luasnip.config.set_config({ -- Setting LuaSnip config
+  region_check_events = "CursorHold,InsertLeave",
+  -- those are for removing deleted snippets, also a common problem
+  delete_check_events = "TextChanged,InsertEnter",
+  -- Enable autotriggered snippets
+  enable_autosnippets = true,
+})
 
+local cmp = require("cmp")
 cmp.setup({
     window = {
         documention = cmp.config.window.bordered(),

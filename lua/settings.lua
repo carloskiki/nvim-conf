@@ -36,5 +36,5 @@ end
 vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]]
 
 -- Color Scheme
-vim.cmd [[colorscheme tokyonight]]
+vim.cmd [[colorscheme tokyonight-storm]]
 vim.g.tokyonight_style = "night"

@@ -40,6 +40,7 @@ vim.keymap.set('n', '<S-TAB>', ':BufferLineCyclePrev<CR>', opt)
 vim.keymap.set('n', '[b', ':BufferLineMovePrev<CR>', opt)
 vim.keymap.set('n', ']b', ':BufferLineMoveNext<CR>', opt)
 vim.keymap.set('n', '<Leader>cb', ':bdelete<CR>', opt)
+vim.keymap.set('n', '<Leader>cB', ':bdelete!<CR>', opt)
 
 -- Telescope
 vim.keymap.set('n', '<leader>ff', ':Telescope find_files<CR>', opt)

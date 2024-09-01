@@ -24,7 +24,6 @@ vim.opt.showmode = false
 vim.opt.updatetime = 50
 vim.opt.clipboard = "unnamedplus"
 vim.opt.iskeyword:append('-')
-vim.opt.termguicolors = true
 
 vim.g.copilot_no_tab_map = true
 

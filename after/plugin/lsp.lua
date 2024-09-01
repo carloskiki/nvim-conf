@@ -33,6 +33,16 @@ lsp.configure("tailwindcss", {
     }
 })
 
+lsp.configure("ltex", {
+    filetypes = {
+        "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context"
+    }
+})
+
+lsp.configure("jinja_lsp", {
+    filetypes = { "html", "rust", "toml" }
+})
+
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
@@ -94,11 +104,11 @@ require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/after/
 -- Enhance Tab for snippets also
 local luasnip = require("luasnip")
 luasnip.config.set_config({ -- Setting LuaSnip config
-  region_check_events = "CursorHold,InsertLeave",
-  -- those are for removing deleted snippets, also a common problem
-  delete_check_events = "TextChanged,InsertEnter",
-  -- Enable autotriggered snippets
-  enable_autosnippets = true,
+    region_check_events = "CursorHold,InsertLeave",
+    -- those are for removing deleted snippets, also a common problem
+    delete_check_events = "TextChanged,InsertEnter",
+    -- Enable autotriggered snippets
+    enable_autosnippets = true,
 })
 
 local cmp = require("cmp")

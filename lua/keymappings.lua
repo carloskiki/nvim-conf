@@ -62,7 +62,7 @@ vim.keymap.set('n', '<leader>fd', function()
 end, opt)
 
 -- Github Copilot
-vim.keymap.set('n', '<leader>p', ':Copilot <CR>', opt)
+vim.keymap.set('n', '<leader>\\', ':Copilot <CR>', opt)
 vim.keymap.set('i', '<C-j>', 'copilot#Accept()', { noremap = true, silent = true, expr = true, replace_keycodes = false })
 vim.keymap.set('i', '<C-i>', '<Plug>(copilot-suggest)')
 

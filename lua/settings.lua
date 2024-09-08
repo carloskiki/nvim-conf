@@ -37,3 +37,8 @@ vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]
 -- Color Scheme
 vim.cmd [[colorscheme tokyonight-storm]]
 vim.g.tokyonight_style = "night"
+
+-- Highlighted Line Numbers
+vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ffffff' })
+vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#ffffff' })
+vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#ffffff' })

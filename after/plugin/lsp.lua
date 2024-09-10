@@ -2,7 +2,6 @@ local lsp = require("lsp-zero").preset({})
 
 -- Language server to keep installed
 lsp.ensure_installed({
-    'tsserver',
     'lua_ls',
     'pyright',
     'rust_analyzer',

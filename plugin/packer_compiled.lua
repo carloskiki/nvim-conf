@@ -219,11 +219,6 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/tokyonight.nvim",
     url = "https://github.com/folke/tokyonight.nvim"
   },
-  ["vim-be-good"] = {
-    loaded = true,
-    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vim-be-good",
-    url = "https://github.com/ThePrimeagen/vim-be-good"
-  },
   ["vim-table-mode"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/vim-table-mode",

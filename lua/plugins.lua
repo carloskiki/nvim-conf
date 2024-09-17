@@ -8,8 +8,6 @@ end
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    -- Vim Game To improve
-    use 'ThePrimeagen/vim-be-good'
     -- Lsp
     use {
         'VonHeikemen/lsp-zero.nvim',

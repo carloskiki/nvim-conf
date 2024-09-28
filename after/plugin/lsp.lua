@@ -7,6 +7,7 @@ lsp.ensure_installed({
     'rust_analyzer',
     'hls',
     'wgsl_analyzer',
+    'ccls'
 })
 
 -- Configure tailwindcss for leptos in rust
@@ -42,6 +43,8 @@ lsp.configure("jinja_lsp", {
     filetypes = { "html", "rust", "toml" }
 })
 
+require'lspconfig'.ccls.setup{}
+
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
@@ -59,7 +62,6 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set('n', '<Leader>F', '<cmd>lua vim.lsp.buf.format( { async = true } )<CR>', opts)
     vim.keymap.set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end)
-
 
 -- Setup lsp-zero
 lsp.setup()

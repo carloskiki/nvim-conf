@@ -1,13 +1,19 @@
 local lsp = require("lsp-zero")
 
--- Language server to keep installed
-lsp.ensure_installed({
-    'lua_ls',
-    'pyright',
-    'rust_analyzer',
-    'hls',
-    'wgsl_analyzer',
-    'ccls'
+local mason_lsp = require("mason-lspconfig")
+
+require('mason').setup({})
+mason_lsp.setup({
+    ensure_installed = {
+        'lua_ls',
+        'pyright',
+        'rust_analyzer',
+        'hls',
+        'wgsl_analyzer',
+        'tailwindcss',
+        'ltex',
+        'jinja_lsp',
+    },
 })
 
 -- Configure tailwindcss for leptos in rust
@@ -48,9 +54,6 @@ require'lspconfig'.ccls.setup{}
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
 
--- Skip config of rust analyzer for rust-tools.
-lsp.skip_server_setup({ 'rust_analyzer' })
-
 lsp.on_attach(function(_, bufnr)
     local opts = { buffer = bufnr }
     lsp.default_keymaps({ buffer = bufnr })
@@ -63,24 +66,25 @@ lsp.on_attach(function(_, bufnr)
     vim.keymap.set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end)
 
--- Setup lsp-zero
-lsp.setup()
-
--- Setup Diagnostics
-lsp.set_sign_icons({
+lsp.extend_lspconfig({
+  capabilities = require('cmp_nvim_lsp').default_capabilities(),
+  float_border = 'rounded',
+  sign_text = {
     error = '✘',
     warn = '▲',
     hint = '⚑',
     info = ''
+  },
 })
 
+-- Setup Diagnostics
 vim.diagnostic.config({
     virtual_text = false,
     severity_sort = true,
     float = {
         style = 'minimal',
         border = 'rounded',
-        source = 'always',
+        source = true,
         header = '',
         prefix = '',
     },

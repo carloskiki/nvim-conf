@@ -1,18 +1,41 @@
 local lsp = require("lsp-zero")
-
 local mason_lsp = require("mason-lspconfig")
+
+local on_attach = function(_, bufnr)
+    local opts = { buffer = bufnr }
+    lsp.default_keymaps({ buffer = bufnr })
+    vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
+    if vim.fn.maparg('<Leader>a', 'n') == '' then
+        vim.keymap.set('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+    end
+    vim.keymap.set('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
+    vim.keymap.set('n', '<Leader>F', '<cmd>lua vim.lsp.buf.format( { async = true } )<CR>', opts)
+    vim.keymap.set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+end
+
+lsp.extend_lspconfig({
+    capabilities = require('cmp_nvim_lsp').default_capabilities(),
+    lsp_attach = on_attach,
+    float_border = 'rounded',
+    sign_text = {
+        error = '✘',
+        warn = '▲',
+        hint = '⚑',
+        info = ''
+    },
+})
 
 require('mason').setup({})
 mason_lsp.setup({
     ensure_installed = {
         'lua_ls',
         'pyright',
+        'ruff',
         'rust_analyzer',
         'hls',
         'wgsl_analyzer',
         'tailwindcss',
         'ltex',
-        'jinja_lsp',
     },
 })
 
@@ -45,37 +68,19 @@ lsp.configure("ltex", {
     }
 })
 
-lsp.configure("jinja_lsp", {
-    filetypes = { "html", "rust", "toml" }
+lsp.configure("html", {
+    filetypes = { "htmldjango", "html", "templ" },
 })
 
-require'lspconfig'.ccls.setup{}
+require 'lspconfig'.ccls.setup {}
+require('lspconfig').ruff.setup {}
+require('lspconfig').pyright.setup {}
+require('lspconfig').taplo.setup {}
+require('lspconfig').ts_ls.setup {}
+require('lspconfig').cssls.setup {}
 
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
-
-lsp.on_attach(function(_, bufnr)
-    local opts = { buffer = bufnr }
-    lsp.default_keymaps({ buffer = bufnr })
-    vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-    if vim.fn.maparg('<Leader>a', 'n') == '' then
-        vim.keymap.set('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
-    end
-    vim.keymap.set('n', '<space>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
-    vim.keymap.set('n', '<Leader>F', '<cmd>lua vim.lsp.buf.format( { async = true } )<CR>', opts)
-    vim.keymap.set('n', '<space>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
-end)
-
-lsp.extend_lspconfig({
-  capabilities = require('cmp_nvim_lsp').default_capabilities(),
-  float_border = 'rounded',
-  sign_text = {
-    error = '✘',
-    warn = '▲',
-    hint = '⚑',
-    info = ''
-  },
-})
 
 -- Setup Diagnostics
 vim.diagnostic.config({
@@ -110,14 +115,14 @@ cmp.setup({
     window = {
         documention = cmp.config.window.bordered(),
     },
+    formatting = lsp.cmp_format(),
     sources = {
         { name = 'path' },
         { name = 'nvim_lsp' },
-        { name = 'nvim_lua' },
         { name = 'buffer',  keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
     },
-    mapping = {
+    mapping = cmp.mapping.preset.insert({
         ["<C-Space>"] = cmp.mapping.complete(),
         ['<Tab>'] = cmp.mapping(function(fallback)
             if cmp.visible() then
@@ -148,5 +153,7 @@ cmp.setup({
             s = cmp.mapping.confirm({ select = true }),
             c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
         }),
-    }
+        ['<C-u>'] = cmp.mapping.scroll_docs(-4),
+        ['<C-d>'] = cmp.mapping.scroll_docs(4),
+    })
 })

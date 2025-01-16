@@ -91,6 +91,7 @@ require('lspconfig').taplo.setup {}
 require('lspconfig').ts_ls.setup {}
 require('lspconfig').cssls.setup {}
 require('lspconfig').jdtls.setup {}
+require('lspconfig').vhdl_ls.setup {}
 
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())

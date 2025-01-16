@@ -25,7 +25,14 @@ lsp.extend_lspconfig({
     },
 })
 
-require('mason').setup({})
+local registries = {
+	"github:nvim-java/mason-registry",
+	"github:mason-org/mason-registry"
+}
+
+require('mason').setup({
+    registries = registries,
+})
 mason_lsp.setup({
     ensure_installed = {
         'lua_ls',
@@ -36,6 +43,7 @@ mason_lsp.setup({
         'wgsl_analyzer',
         'tailwindcss',
         'ltex',
+        'jdtls',
     },
 })
 
@@ -62,6 +70,10 @@ lsp.configure("tailwindcss", {
     }
 })
 
+
+-- Setup Java before lspconfig
+require('java').setup()
+
 lsp.configure("ltex", {
     filetypes = {
         "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context"
@@ -72,12 +84,13 @@ lsp.configure("html", {
     filetypes = { "htmldjango", "html", "templ" },
 })
 
-require 'lspconfig'.ccls.setup {}
+require('lspconfig').ccls.setup {}
 require('lspconfig').ruff.setup {}
 require('lspconfig').pyright.setup {}
 require('lspconfig').taplo.setup {}
 require('lspconfig').ts_ls.setup {}
 require('lspconfig').cssls.setup {}
+require('lspconfig').jdtls.setup {}
 
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())

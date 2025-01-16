@@ -109,6 +109,12 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/cmp_luasnip",
     url = "https://github.com/saadparwaiz1/cmp_luasnip"
   },
+  ["codecompanion.nvim"] = {
+    config = { "\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18codecompanion\frequire\0" },
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/codecompanion.nvim",
+    url = "https://github.com/olimorris/codecompanion.nvim"
+  },
   ["copilot.vim"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/copilot.vim",
@@ -129,6 +135,11 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/lsp-zero.nvim",
     url = "https://github.com/VonHeikemen/lsp-zero.nvim"
   },
+  ["lua-async-await"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/lua-async-await",
+    url = "https://github.com/nvim-java/lua-async-await"
+  },
   ["mason-lspconfig.nvim"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
@@ -144,6 +155,11 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/material.nvim",
     url = "https://github.com/marko-cerovac/material.nvim"
   },
+  ["nui.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nui.nvim",
+    url = "https://github.com/MunifTanjim/nui.nvim"
+  },
   ["nvim-autopairs"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-autopairs",
@@ -158,6 +174,36 @@ _G.packer_plugins = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-colorizer.lua",
     url = "https://github.com/norcalli/nvim-colorizer.lua"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-java"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-java",
+    url = "https://github.com/nvim-java/nvim-java"
+  },
+  ["nvim-java-core"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-java-core",
+    url = "https://github.com/nvim-java/nvim-java-core"
+  },
+  ["nvim-java-dap"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-java-dap",
+    url = "https://github.com/nvim-java/nvim-java-dap"
+  },
+  ["nvim-java-refactor"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-java-refactor",
+    url = "https://github.com/nvim-java/nvim-java-refactor"
+  },
+  ["nvim-java-test"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/nvim-java-test",
+    url = "https://github.com/nvim-java/nvim-java-test"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
@@ -199,6 +245,11 @@ _G.packer_plugins = {
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/rustaceanvim",
     url = "https://github.com/mrcjkb/rustaceanvim"
   },
+  ["spring-boot.nvim"] = {
+    loaded = true,
+    path = "/Users/charles/.local/share/nvim/site/pack/packer/start/spring-boot.nvim",
+    url = "https://github.com/JavaHello/spring-boot.nvim"
+  },
   ["telescope.nvim"] = {
     loaded = true,
     path = "/Users/charles/.local/share/nvim/site/pack/packer/start/telescope.nvim",
@@ -227,6 +278,10 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: codecompanion.nvim
+time([[Config for codecompanion.nvim]], true)
+try_loadstring("\27LJ\2\n;\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\18codecompanion\frequire\0", "config", "codecompanion.nvim")
+time([[Config for codecompanion.nvim]], false)
 
 _G._packer.inside_compile = false
 if _G._packer.needs_bufread == true then

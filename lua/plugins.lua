@@ -15,8 +15,24 @@ return require('packer').startup(function(use)
     }
 
     -- Rust Tools
+    -- 
     use 'mrcjkb/rustaceanvim'
 
+    -- Java Tools
+    use {
+        'nvim-java/nvim-java',
+        requires = {
+            'nvim-java/lua-async-await',
+            'nvim-java/nvim-java-refactor',
+            'nvim-java/nvim-java-core',
+            'nvim-java/nvim-java-test',
+            'nvim-java/nvim-java-dap',
+            'MunifTanjim/nui.nvim',
+            'neovim/nvim-lspconfig',
+            'mfussenegger/nvim-dap',
+            'JavaHello/spring-boot.nvim',
+        }
+    }
     -- LSP Support
     use { 'neovim/nvim-lspconfig' }
     use { 'williamboman/mason.nvim' }
@@ -46,8 +62,18 @@ return require('packer').startup(function(use)
         },
     }
 
-    -- Github Copilot
+    -- Github Copilot & Code Companion
     use 'https://github.com/github/copilot.vim'
+    use({
+        "olimorris/codecompanion.nvim",
+        config = function()
+            require("codecompanion").setup()
+        end,
+        requires = {
+            "nvim-lua/plenary.nvim",
+            "nvim-treesitter/nvim-treesitter",
+        }
+    })
 
     -- toggleterm (for lazygit)
     use { "akinsho/toggleterm.nvim", tag = '*' }
@@ -77,4 +103,6 @@ return require('packer').startup(function(use)
     use 'dhruvasagar/vim-table-mode'
     -- Better Escape
     use "max397574/better-escape.nvim"
+    -- DAP
+    use 'mfussenegger/nvim-dap'
 end)

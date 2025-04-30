@@ -1,5 +1,0 @@
-require('nvim-autopairs').setup()
-require('gitsigns').setup()
-require('colorizer').setup()
-require('bufferline').setup()
-require('toggleterm').setup()

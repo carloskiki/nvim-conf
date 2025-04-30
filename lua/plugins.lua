@@ -8,11 +8,6 @@ end
 return require('packer').startup(function(use)
     -- Packer can manage itself
     use 'wbthomason/packer.nvim'
-    -- Lsp
-    use {
-        'VonHeikemen/lsp-zero.nvim',
-        branch = 'v4.x',
-    }
 
     -- Rust Tools
     use 'mrcjkb/rustaceanvim'
@@ -20,7 +15,6 @@ return require('packer').startup(function(use)
     -- LSP Support
     use { 'neovim/nvim-lspconfig' }
     use { 'williamboman/mason.nvim' }
-    use { 'williamboman/mason-lspconfig.nvim' }
 
     -- Autocompletion
     use { 'hrsh7th/nvim-cmp' }
@@ -35,8 +29,6 @@ return require('packer').startup(function(use)
 
     -- Color scheme
     use 'folke/tokyonight.nvim'
-    use 'navarasu/onedark.nvim'
-    use 'marko-cerovac/material.nvim'
 
     -- Git signs
     use {
@@ -47,7 +39,7 @@ return require('packer').startup(function(use)
     }
 
     -- Github Copilot & Code Companion
-    use "github/copilot.vim"
+    use 'github/copilot.vim'
     use({
         "olimorris/codecompanion.nvim",
         config = function()
@@ -60,7 +52,11 @@ return require('packer').startup(function(use)
     })
 
     -- toggleterm (for lazygit)
-    use { "akinsho/toggleterm.nvim", tag = '*' }
+    use { "akinsho/toggleterm.nvim", tag = '*',
+        config = function()
+            require("toggleterm").setup()
+        end
+    }
 
     -- Tree-sitter
     use {
@@ -72,21 +68,54 @@ return require('packer').startup(function(use)
     use {
         'nvim-telescope/telescope.nvim',
         requires = { 'nvim-lua/plenary.nvim' },
+        config = function()
+            require('telescope').setup {
+                defaults = {
+                    mappings = {
+                        n = {
+                            ["q"] = "close"
+                        }
+                    }
+                },
+            }
+        end
     }
     -- Buffer tabs
     use { 'akinsho/bufferline.nvim',
         requires = 'kyazdani42/nvim-web-devicons',
+        config = function()
+            require("bufferline").setup {}
+        end
     }
-    -- Colorizer
-    use 'norcalli/nvim-colorizer.lua'
     -- Auto pairs
-    use 'windwp/nvim-autopairs'
+    use {
+        'windwp/nvim-autopairs',
+        event = "InsertEnter",
+        config = function()
+            require('nvim-autopairs').setup()
+        end
+    }
+
     -- LaTeX
     use 'lervag/vimtex'
-    -- Markdown Tables
-    use 'dhruvasagar/vim-table-mode'
-    -- Better Escape
-    use "max397574/better-escape.nvim"
     -- DAP
     use 'mfussenegger/nvim-dap'
+    -- Better Escape
+    use { "max397574/better-escape.nvim",
+        config = function()
+            require('better_escape').setup({
+                default_mappings = false,
+                mappings = {
+                    i = {
+                        j = {
+                            k = "<Esc>"
+                        },
+                        k = {
+                            j = "<Esc>"
+                        }
+                    },
+                }
+            })
+        end
+    }
 end)

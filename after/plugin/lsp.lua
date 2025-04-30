@@ -25,25 +25,15 @@ lsp.extend_lspconfig({
     },
 })
 
-local registries = {
-	"github:nvim-java/mason-registry",
-	"github:mason-org/mason-registry"
-}
-
-require('mason').setup({
-    registries = registries,
-})
+require('mason').setup({})
 mason_lsp.setup({
     ensure_installed = {
         'lua_ls',
         'pyright',
         'ruff',
-        'rust_analyzer',
-        'hls',
         'wgsl_analyzer',
         'tailwindcss',
         'ltex',
-        'jdtls',
     },
 })
 
@@ -71,9 +61,6 @@ lsp.configure("tailwindcss", {
 })
 
 
--- Setup Java before lspconfig
-require('java').setup()
-
 lsp.configure("ltex", {
     filetypes = {
         "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context"
@@ -90,8 +77,8 @@ require('lspconfig').pyright.setup {}
 require('lspconfig').taplo.setup {}
 require('lspconfig').ts_ls.setup {}
 require('lspconfig').cssls.setup {}
-require('lspconfig').jdtls.setup {}
 require('lspconfig').vhdl_ls.setup {}
+require('lspconfig').hls.setup {}
 
 -- configure lua for nvim lua
 require('lspconfig').lua_ls.setup(lsp.nvim_lua_ls())
@@ -136,29 +123,29 @@ cmp.setup({
         { name = 'buffer',  keyword_length = 3 },
         { name = 'luasnip', keyword_length = 2 },
     },
-    mapping = cmp.mapping.preset.insert({
+    mapping = {
         ["<C-Space>"] = cmp.mapping.complete(),
-        ['<Tab>'] = cmp.mapping(function(fallback)
+        ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
-                cmp.select_next_item({ behavior = cmp.SelectBehavior.Select })
-            elseif luasnip.expand_or_locally_jumpable() then
-                luasnip.expand_or_jump()
-            else
-                fallback()
-            end
-        end, { 'i', 's' }),
-        ["<S-Tab>"] = cmp.mapping(function(fallback)
-            if cmp.visible() then
-                cmp.select_prev_item()
-            elseif luasnip.jumpable(-1) then
-                luasnip.jump(-1)
+                cmp.select_next_item()
+            elseif luasnip.locally_jumpable(1) then
+                luasnip.jump(1)
             else
                 fallback()
             end
         end, { "i", "s" }),
+        ["<S-Tab>"] = cmp.mapping(function(fallback)
+          if cmp.visible() then
+            cmp.select_prev_item()
+          elseif luasnip.locally_jumpable(-1) then
+            luasnip.jump(-1)
+          else
+            fallback()
+          end
+        end, { "i", "s" }),
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
-                if cmp.visible() then
+                if cmp.visible() and cmp.get_active_entry() then
                     cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
                 else
                     fallback()
@@ -169,5 +156,11 @@ cmp.setup({
         }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    })
+    },
+    snippet = {
+        expand = function(args)
+            require('luasnip').lsp_expand(args.body)
+        end,
+    },
+    preselect = cmp.PreselectMode.None,
 })

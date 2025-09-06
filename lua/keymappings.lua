@@ -68,16 +68,14 @@ vim.keymap.set('i', '<C-j>', 'copilot#Accept()', { noremap = true, silent = true
 vim.keymap.set('i', '<C-i>', '<Plug>(copilot-suggest)')
 
 -- Lazygit with Toggleterm
-vim.keymap.set("n", "<leader>g", function()
-    require('toggleterm.terminal').Terminal:new({ cmd = "lazygit", hidden = true, direction = "float" }):toggle()
-end, opt)
+vim.keymap.set("n", "<leader>g", ":LazyGit<CR>", opt)
 
 -- Paste without overwriting the clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"0p', opt)
 
 -- Activate/Deactivate Copilot
-vim.keymap.set('n', '<leader>cd', ':Copilot disable<CR>', opt)
-vim.keymap.set('n', '<leader>ce', ':Copilot enable<CR>', opt)
+vim.keymap.set('n', '<leader>cd', '<cmd>Copilot disable<CR>', opt)
+vim.keymap.set('n', '<leader>ce', '<cmd>Copilot enable<CR>', opt)
 
 -- VimTex binding for wrapping delimiters in \left & \right
 vim.keymap.set('n', '<leader>lr', '<plug>(vimtex-delim-add-modifiers)', { silent = true })

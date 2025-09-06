@@ -1,7 +1,7 @@
 vim.filetype.add({ extension = { wgsl = "wgsl" } })
 
 require 'nvim-treesitter.configs'.setup {
-    ensure_installed = { 'python', 'haskell', 'tsx', 'typescript', 'lua', 'json', 'css', 'rust', 'wgsl', 'c', 'vim', 'help' },
+    ensure_installed = { 'python', 'haskell', 'tsx', 'typescript', 'lua', 'json', 'css', 'rust', 'wgsl', 'c', 'vim' },
 
     -- Complete html tags and etc.
     autotag = {

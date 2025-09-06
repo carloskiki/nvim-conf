@@ -38,7 +38,9 @@ vim.api.nvim_create_autocmd('LspAttach', {
         vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
         vim.keymap.set('n', '<Leader>d', '<cmd>lua vim.diagnostic.open_float()<CR>', opts)
-        vim.keymap.set('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        if vim.fn.maparg('<Leader>a', 'n') == '' then
+            vim.keymap.set('n', '<Leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+        end
         vim.keymap.set('n', '<Leader>D', '<cmd>lua vim.lsp.buf.type_definition()<CR>', opts)
         vim.keymap.set('n', '<Leader>F', '<cmd>lua vim.lsp.buf.format( { async = true } )<CR>', opts)
         vim.keymap.set('n', '<Leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
@@ -47,8 +49,6 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lsps = { "ccls", "ruff", "pyright", "taplo", "ts_ls", "cssls", "vhdl_ls", "hls", "lua_ls" }
-
 lspconfig["tailwindcss"].setup {
     capabilities = capabilities,
     filetypes = { "css", "scss", "sass", "postcss", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue" },
@@ -70,13 +70,14 @@ lspconfig["html"].setup {
     filetypes = { "htmldjango", "html", "templ" },
 }
 
+local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "vhdl_ls", "hls", "lua_ls" }
 -- loop over all lsps and setup with capabilities
 for _, server in ipairs(lsps) do
     lspconfig[server].setup {
         capabilities = capabilities,
     }
 end
-
+-- 
 -- Load custom snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
 require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })

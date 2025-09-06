@@ -35,8 +35,15 @@ end
 vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]]
 
 -- Color Scheme
-vim.cmd [[colorscheme tokyonight-storm]]
-vim.g.tokyonight_style = "night"
+require("tokyonight").setup({
+    -- use the storm style
+    style = "night",
+    -- on_colors = function(colors)
+    --     colors.comment = '#bbbbbb'
+    -- end,
+    on_highlights = function(hl) hl.Comment = { fg = '#cccccc', italic = true } end,
+})
+vim.cmd([[colorscheme tokyonight]])
 
 -- Highlighted Line Numbers
 vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ffffff' })

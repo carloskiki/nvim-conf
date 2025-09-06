@@ -39,7 +39,7 @@ return require('packer').startup(function(use)
     }
 
     -- Github Copilot & Code Companion
-    use 'github/copilot.vim'
+    use { "github/copilot.vim" }
     use({
         "olimorris/codecompanion.nvim",
         config = function()
@@ -51,12 +51,14 @@ return require('packer').startup(function(use)
         }
     })
 
-    -- toggleterm (for lazygit)
-    use { "akinsho/toggleterm.nvim", tag = '*',
-        config = function()
-            require("toggleterm").setup()
-        end
-    }
+    -- LazyGit
+    use({
+        "kdheepak/lazygit.nvim",
+        -- optional for floating window border decoration
+        requires = {
+            "nvim-lua/plenary.nvim",
+        },
+    })
 
     -- Tree-sitter
     use {

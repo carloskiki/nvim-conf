@@ -19,7 +19,6 @@ vim.diagnostic.config({
     },
 })
 
-local lspconfig = require("lspconfig")
 require('mason').setup({})
 
 vim.api.nvim_create_autocmd('LspAttach', {
@@ -49,7 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-lspconfig["tailwindcss"].setup {
+vim.lsp.config("tailwindcss", {
     capabilities = capabilities,
     filetypes = { "css", "scss", "sass", "postcss", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue" },
     init_options = {
@@ -57,27 +56,27 @@ lspconfig["tailwindcss"].setup {
             rust = "html",
         },
     }
-}
+})
 
-lspconfig["ltex"].setup {
+vim.lsp.config("ltex", {
     capabilities = capabilities,
     filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context" }
-}
+})
 
 
-lspconfig["html"].setup {
+vim.lsp.config("html", {
     capabilities = capabilities,
     filetypes = { "htmldjango", "html", "templ" },
-}
+})
 
 local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "vhdl_ls", "hls", "lua_ls" }
 -- loop over all lsps and setup with capabilities
 for _, server in ipairs(lsps) do
-    lspconfig[server].setup {
+    vim.lsp.config(server, {
         capabilities = capabilities,
-    }
+    })
 end
--- 
+--
 -- Load custom snippets
 require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
 require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })
@@ -150,7 +149,7 @@ cmp.setup({
                 end
             end,
             s = cmp.mapping.confirm({ select = true }),
-            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = true }),
+            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),

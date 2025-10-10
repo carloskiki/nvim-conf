@@ -48,6 +48,10 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
+vim.lsp.config("rust-analyzer", {
+    capabilities = capabilities,
+})
+
 vim.lsp.config("tailwindcss", {
     capabilities = capabilities,
     filetypes = { "css", "scss", "sass", "postcss", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue" },
@@ -75,6 +79,7 @@ for _, server in ipairs(lsps) do
     vim.lsp.config(server, {
         capabilities = capabilities,
     })
+    vim.lsp.enable(server)
 end
 --
 -- Load custom snippets
@@ -143,13 +148,11 @@ cmp.setup({
         ["<CR>"] = cmp.mapping({
             i = function(fallback)
                 if cmp.visible() and cmp.get_active_entry() then
-                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false })
+                    cmp.confirm({ behavior = cmp.ConfirmBehavior.Insert, select = false })
                 else
                     fallback()
                 end
             end,
-            s = cmp.mapping.confirm({ select = true }),
-            c = cmp.mapping.confirm({ behavior = cmp.ConfirmBehavior.Replace, select = false }),
         }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),

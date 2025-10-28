@@ -79,3 +79,15 @@ vim.keymap.set('n', '<leader>ce', '<cmd>Copilot enable<CR>', opt)
 
 -- VimTex binding for wrapping delimiters in \left & \right
 vim.keymap.set('n', '<leader>lr', '<plug>(vimtex-delim-add-modifiers)', { silent = true })
+
+-- DAP
+vim.keymap.set('n', '<right>', '<Cmd>lua require("dap").step_into()<CR>', { silent = true })
+vim.keymap.set('n', '<left>', '<Cmd>lua require("dap").step_out()<CR>', { silent = true })
+vim.keymap.set('n', '<down>', '<Cmd>lua require("dap").step_over()<CR>', { silent = true })
+vim.keymap.set('n', '<up>', '<Cmd>lua require("dap").continue()<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sb', '<Cmd>lua require("dap").toggle_breakpoint()<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sc', '<Cmd>lua require("dap").clear_breakpoints()<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sr', '<Cmd>lua require("dap").run_to_cursor()<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sl', '<Cmd>lua require("dap").repl.toggle()<CR>', { silent = true })
+vim.keymap.set('n', '<leader>st', '<Cmd>lua require("dap").terminate()<CR>', { silent = true })

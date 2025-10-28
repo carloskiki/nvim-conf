@@ -14,3 +14,8 @@ vim.keymap.set("n", "<Leader>ct", function()
     end,
     { silent = true, buffer = bufnr }
 )
+vim.keymap.set("n", "<Leader>sd", function()
+        vim.cmd.RustLsp('debuggables')
+    end,
+    { silent = true, buffer = bufnr }
+)

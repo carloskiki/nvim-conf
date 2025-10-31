@@ -73,7 +73,7 @@ vim.lsp.config("html", {
     filetypes = { "htmldjango", "html", "templ" },
 })
 
-local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "vhdl_ls", "hls", "lua_ls" }
+local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "hls", "lua_ls" }
 -- loop over all lsps and setup with capabilities
 for _, server in ipairs(lsps) do
     vim.lsp.config(server, {

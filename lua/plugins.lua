@@ -98,8 +98,6 @@ return require('packer').startup(function(use)
         end
     }
 
-    -- LaTeX
-    use 'lervag/vimtex'
     -- DAP
     use 'mfussenegger/nvim-dap'
     -- Better Escape

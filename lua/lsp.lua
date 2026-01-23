@@ -48,32 +48,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-vim.lsp.config("rust-analyzer", {
-    capabilities = capabilities,
-})
-
-vim.lsp.config("tailwindcss", {
-    capabilities = capabilities,
-    filetypes = { "css", "scss", "sass", "postcss", "html", "javascript", "javascriptreact", "typescript", "typescriptreact", "svelte", "vue" },
-    init_options = {
-        userLanguages = {
-            rust = "html",
-        },
-    }
-})
-
-vim.lsp.config("ltex", {
-    capabilities = capabilities,
-    filetypes = { "bib", "gitcommit", "markdown", "org", "plaintex", "rst", "rnoweb", "tex", "pandoc", "quarto", "rmd", "context" }
-})
-
-
-vim.lsp.config("html", {
-    capabilities = capabilities,
-    filetypes = { "htmldjango", "html", "templ" },
-})
-
-local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "hls", "lua_ls" }
+local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "hls", "lua_ls", "texlab", "html", "tailwindcss" }
 -- loop over all lsps and setup with capabilities
 for _, server in ipairs(lsps) do
     vim.lsp.config(server, {

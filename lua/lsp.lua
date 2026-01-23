@@ -82,15 +82,12 @@ cmp.setup({
         { name = 'path' },
         { name = 'nvim_lsp' },
         { name = 'buffer',  keyword_length = 3 },
-        { name = 'luasnip', keyword_length = 2 },
     },
     mapping = {
         ["<C-Space>"] = cmp.mapping.complete(),
         ["<Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_next_item()
-            elseif luasnip.locally_jumpable(1) then
-                luasnip.jump(1)
             else
                 fallback()
             end
@@ -98,8 +95,6 @@ cmp.setup({
         ["<S-Tab>"] = cmp.mapping(function(fallback)
             if cmp.visible() then
                 cmp.select_prev_item()
-            elseif luasnip.locally_jumpable(-1) then
-                luasnip.jump(-1)
             else
                 fallback()
             end
@@ -115,11 +110,6 @@ cmp.setup({
         }),
         ['<C-u>'] = cmp.mapping.scroll_docs(-4),
         ['<C-d>'] = cmp.mapping.scroll_docs(4),
-    },
-    snippet = {
-        expand = function(args)
-            require('luasnip').lsp_expand(args.body)
-        end,
     },
     preselect = cmp.PreselectMode.None,
 })

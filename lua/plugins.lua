@@ -14,18 +14,12 @@ return require('packer').startup(function(use)
 
     -- LSP Support
     use { 'neovim/nvim-lspconfig' }
-    use { 'mason-org/mason.nvim' }
 
     -- Autocompletion
     use { 'hrsh7th/nvim-cmp' }
     use { 'hrsh7th/cmp-buffer' }
     use { 'hrsh7th/cmp-path' }
-    use { 'saadparwaiz1/cmp_luasnip' }
     use { 'hrsh7th/cmp-nvim-lsp' }
-
-    -- Snippets
-    use { 'L3MON4D3/LuaSnip' }
-    use { 'rafamadriz/friendly-snippets' }
 
     -- Color scheme
     use 'folke/tokyonight.nvim'
@@ -40,16 +34,6 @@ return require('packer').startup(function(use)
 
     -- Github Copilot & Code Companion
     use { "github/copilot.vim" }
-    use({
-        "olimorris/codecompanion.nvim",
-        config = function()
-            require("codecompanion").setup()
-        end,
-        requires = {
-            "nvim-lua/plenary.nvim",
-            "nvim-treesitter/nvim-treesitter",
-        }
-    })
 
     -- LazyGit
     use({

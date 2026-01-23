@@ -56,20 +56,6 @@ for _, server in ipairs(lsps) do
     })
     vim.lsp.enable(server)
 end
---
--- Load custom snippets
-require("luasnip.loaders.from_vscode").lazy_load({ paths = { "~/.config/nvim/snippets" } })
-require("luasnip.loaders.from_lua").lazy_load({ paths = { "~/.config/nvim/snippets" } })
--- Control-Space: trigger completion
--- Enhance Tab for snippets also
-local luasnip = require("luasnip")
-luasnip.config.set_config({ -- Setting LuaSnip config
-    region_check_events = "CursorHold,InsertLeave",
-    -- those are for removing deleted snippets, also a common problem
-    delete_check_events = "TextChanged,InsertEnter",
-    -- Enable autotriggered snippets
-    enable_autosnippets = true,
-})
 
 local cmp = require("cmp")
 cmp.setup({

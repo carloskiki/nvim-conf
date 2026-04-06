@@ -67,8 +67,17 @@ vim.keymap.set('n', '<leader>\\', ':Copilot <CR>', opt)
 vim.keymap.set('i', '<C-j>', 'copilot#Accept()', { noremap = true, silent = true, expr = true, replace_keycodes = false })
 vim.keymap.set('i', '<C-i>', '<Plug>(copilot-suggest)')
 
--- Lazygit with Toggleterm
-vim.keymap.set("n", "<leader>g", ":LazyGit<CR>", opt)
+-- Lazygit
+vim.keymap.set("n", "<leader>g", function()
+    vim.cmd('enew')
+    vim.fn.termopen("lazygit", {
+        on_exit = function()
+            vim.cmd('bd!')
+        end
+    })
+    vim.cmd('startinsert')
+end
+, opt)
 
 -- Paste without overwriting the clipboard
 vim.keymap.set({ 'n', 'v' }, '<leader>p', '"0p', opt)
@@ -86,7 +95,8 @@ vim.keymap.set('n', '<left>', '<Cmd>lua require("dap").step_out()<CR>', { silent
 vim.keymap.set('n', '<down>', '<Cmd>lua require("dap").step_over()<CR>', { silent = true })
 vim.keymap.set('n', '<up>', '<Cmd>lua require("dap").continue()<CR>', { silent = true })
 vim.keymap.set('n', '<leader>sb', '<Cmd>lua require("dap").toggle_breakpoint()<CR>', { silent = true })
-vim.keymap.set('n', '<leader>sB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>', { silent = true })
+vim.keymap.set('n', '<leader>sB', '<Cmd>lua require("dap").set_breakpoint(vim.fn.input("Breakpoint condition: "))<CR>',
+    { silent = true })
 vim.keymap.set('n', '<leader>sc', '<Cmd>lua require("dap").clear_breakpoints()<CR>', { silent = true })
 vim.keymap.set('n', '<leader>sr', '<Cmd>lua require("dap").run_to_cursor()<CR>', { silent = true })
 vim.keymap.set('n', '<leader>sl', '<Cmd>lua require("dap").repl.toggle()<CR>', { silent = true })

@@ -46,7 +46,7 @@ vim.api.nvim_create_autocmd('LspAttach', {
 
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
-local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "hls", "lua_ls", "html", "tailwindcss" }
+local lsps = { "clangd", "ruff", "pyright", "taplo", "ts_ls", "cssls", "lua_ls", "html", "tailwindcss" }
 -- loop over all lsps and setup with capabilities
 for _, server in ipairs(lsps) do
     vim.lsp.config(server, {

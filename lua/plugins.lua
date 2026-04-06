@@ -12,6 +12,9 @@ return require('packer').startup(function(use)
     -- Rust Tools
     use 'mrcjkb/rustaceanvim'
 
+    -- Java Tools
+    use 'mfussenegger/nvim-jdtls'
+
     -- LSP Support
     use { 'neovim/nvim-lspconfig' }
 
@@ -34,15 +37,6 @@ return require('packer').startup(function(use)
 
     -- Github Copilot & Code Companion
     use { "github/copilot.vim" }
-
-    -- LazyGit
-    use({
-        "kdheepak/lazygit.nvim",
-        -- optional for floating window border decoration
-        requires = {
-            "nvim-lua/plenary.nvim",
-        },
-    })
 
     -- Tree-sitter
     use {
@@ -68,7 +62,6 @@ return require('packer').startup(function(use)
     }
     -- Buffer tabs
     use { 'akinsho/bufferline.nvim',
-        requires = 'kyazdani42/nvim-web-devicons',
         config = function()
             require("bufferline").setup {}
         end

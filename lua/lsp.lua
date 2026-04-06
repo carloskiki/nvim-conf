@@ -113,3 +113,10 @@ cmp.setup({
     },
     preselect = cmp.PreselectMode.None,
 })
+
+-- Add `wgsl` as a filetype
+vim.filetype.add({
+    extension = {
+        wgsl = "wgsl",
+    },
+})

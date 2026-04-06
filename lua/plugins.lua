@@ -37,7 +37,6 @@ vim.pack.add({
 
     -- Tree-sitter
     gh('nvim-treesitter/nvim-treesitter'),
-    gh('windwp/nvim-ts-autotag'),
 
     -- Telescope
     gh('nvim-telescope/telescope.nvim'),

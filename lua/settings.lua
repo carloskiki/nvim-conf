@@ -60,3 +60,6 @@ require('telescope').setup {
         }
     },
 }
+
+-- initialize bufferline
+require("bufferline").setup {}

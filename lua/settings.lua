@@ -49,3 +49,14 @@ vim.cmd([[colorscheme tokyonight]])
 vim.api.nvim_set_hl(0, 'LineNr', { fg = '#ffffff' })
 vim.api.nvim_set_hl(0, 'LineNrBelow', { fg = '#ffffff' })
 vim.api.nvim_set_hl(0, 'LineNrAbove', { fg = '#ffffff' })
+
+-- telescope exit on 'q'
+require('telescope').setup {
+    defaults = {
+        mappings = {
+            n = {
+                ["q"] = "close"
+            }
+        }
+    },
+}

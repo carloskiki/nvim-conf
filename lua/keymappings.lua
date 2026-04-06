@@ -1,5 +1,20 @@
 local opt = { noremap = true, silent = true }
 
+-- Escape sucks
+require('better_escape').setup({
+    default_mappings = false,
+    mappings = {
+        i = {
+            j = {
+                k = "<Esc>"
+            },
+            k = {
+                j = "<Esc>"
+            }
+        },
+    }
+})
+
 vim.keymap.set('n', '<Space>', '<NOP>', opt)
 vim.g.mapleader = ' '
 
@@ -18,10 +33,6 @@ vim.keymap.set('n', '<C-l>', '<C-w>l', { silent = true })
 -- better indenting
 vim.keymap.set('v', '<', '<gv', opt)
 vim.keymap.set('v', '>', '>gv', opt)
-
--- I hate escape
--- vim.keymap.set('i', 'jk', '<ESC>', opt)
--- vim.keymap.set('i', 'kj', '<ESC>', opt)
 
 -- Move selected line / block of text in visual mode
 vim.keymap.set('x', 'K', ':move \'<-2<CR>gv-gv', opt)

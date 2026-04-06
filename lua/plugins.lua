@@ -1,98 +1,56 @@
-local fn = vim.fn
-local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
-if fn.empty(fn.glob(install_path)) > 0 then
-    fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
-    vim.cmd 'packadd packer.nvim'
+if vim.pack == nil then
+    vim.notify('vim.pack is unavailable (requires Neovim 0.12+)', vim.log.levels.ERROR)
+    return
 end
 
-return require('packer').startup(function(use)
-    -- Packer can manage itself
-    use 'wbthomason/packer.nvim'
+local gh = function(repo)
+    return 'https://github.com/' .. repo
+end
 
+vim.pack.add({
     -- Rust Tools
-    use 'mrcjkb/rustaceanvim'
+    gh('mrcjkb/rustaceanvim'),
 
     -- Java Tools
-    use 'mfussenegger/nvim-jdtls'
+    gh('mfussenegger/nvim-jdtls'),
 
-    -- LSP Support
-    use { 'neovim/nvim-lspconfig' }
+    -- LSP defaults
+    gh('neovim/nvim-lspconfig'),
 
     -- Autocompletion
-    use { 'hrsh7th/nvim-cmp' }
-    use { 'hrsh7th/cmp-buffer' }
-    use { 'hrsh7th/cmp-path' }
-    use { 'hrsh7th/cmp-nvim-lsp' }
+    gh('hrsh7th/nvim-cmp'),
+    gh('hrsh7th/cmp-buffer'),
+    gh('hrsh7th/cmp-path'),
+    gh('hrsh7th/cmp-nvim-lsp'),
 
     -- Color scheme
-    use 'folke/tokyonight.nvim'
+    gh('folke/tokyonight.nvim'),
+
+    -- Shared dependency
+    gh('nvim-lua/plenary.nvim'),
 
     -- Git signs
-    use {
-        'lewis6991/gitsigns.nvim',
-        requires = {
-            'nvim-lua/plenary.nvim'
-        },
-    }
+    gh('lewis6991/gitsigns.nvim'),
 
-    -- Github Copilot & Code Companion
-    use { "github/copilot.vim" }
+    -- Github Copilot
+    gh('github/copilot.vim'),
 
     -- Tree-sitter
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate',
-    }
-    use 'windwp/nvim-ts-autotag'
+    gh('nvim-treesitter/nvim-treesitter'),
+    gh('windwp/nvim-ts-autotag'),
+
     -- Telescope
-    use {
-        'nvim-telescope/telescope.nvim',
-        requires = { 'nvim-lua/plenary.nvim' },
-        config = function()
-            require('telescope').setup {
-                defaults = {
-                    mappings = {
-                        n = {
-                            ["q"] = "close"
-                        }
-                    }
-                },
-            }
-        end
-    }
+    gh('nvim-telescope/telescope.nvim'),
+
     -- Buffer tabs
-    use { 'akinsho/bufferline.nvim',
-        config = function()
-            require("bufferline").setup {}
-        end
-    }
-    -- Auto pairs
-    use {
-        'windwp/nvim-autopairs',
-        event = "InsertEnter",
-        config = function()
-            require('nvim-autopairs').setup()
-        end
-    }
+    gh('akinsho/bufferline.nvim'),
 
     -- DAP
-    use 'mfussenegger/nvim-dap'
+    gh('mfussenegger/nvim-dap'),
+
     -- Better Escape
-    use { "max397574/better-escape.nvim",
-        config = function()
-            require('better_escape').setup({
-                default_mappings = false,
-                mappings = {
-                    i = {
-                        j = {
-                            k = "<Esc>"
-                        },
-                        k = {
-                            j = "<Esc>"
-                        }
-                    },
-                }
-            })
-        end
-    }
-end)
+    gh('max397574/better-escape.nvim'),
+}, {
+    load = true,
+    confirm = false,
+})

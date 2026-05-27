@@ -1,9 +1,9 @@
 vim.g.rustaceanvim = {
     dap = {
-        adapter = require('rustaceanvim.dap').executable({
+        adapter = {
+            type = "executable",
             command = "/opt/homebrew/opt/llvm/bin/lldb-dap",
-            name = "lldb",
-        })
+        }
     }
 }
 

@@ -27,9 +27,7 @@ vim.opt.iskeyword:append('-')
 
 vim.g.copilot_no_tab_map = true
 
-if vim.g.neovide == true then
-    vim.o.guifont = "RobotoMono Nerd Font:h16"
-end
+vim.g.neovide_scale_factor = 1.10
 
 -- Highlight on Yank
 vim.cmd [[au TextYankPost * silent! lua vim.highlight.on_yank {on_visual=false}]]
@@ -63,3 +61,9 @@ require('telescope').setup {
 
 -- initialize bufferline
 require("bufferline").setup {}
+
+-- initialize treesitter
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = { 'rust', 'haskell', 'markdown' },
+  callback = function() vim.treesitter.start() end,
+})
